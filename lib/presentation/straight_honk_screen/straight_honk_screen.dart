@@ -59,7 +59,7 @@ class StraightHonkScreen extends StatelessWidget {
                           "88th street",
                           style: theme.textTheme.titleLarge,
                         ),
-                        SizedBox(height: 6.v),
+                        SizedBox(height: 5.v),
                         Text(
                           "2.3 km • 25 min",
                           style: theme.textTheme.bodyLarge,

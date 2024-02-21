@@ -1,3 +1,4 @@
+import 'package:auricurrus_watch/page-controller/auth_checker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/scheduler.dart';
@@ -24,10 +25,26 @@ class MyApp extends StatelessWidget {
           theme: theme,
           title: 'auricurrus_watch',
           debugShowCheckedModeBanner: false,
-          initialRoute: AppRoutes.splashScreen,
-          routes: AppRoutes.routes,
+          home: AuthChecker(),
         );
       },
     );
   }
 }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Sizer(
+//       builder: (context, orientation, deviceType) {
+//         return MaterialApp(
+//           theme: theme,
+//           title: 'auricurrus_watch',
+//           debugShowCheckedModeBanner: false,
+//           initialRoute: AppRoutes.turnRightHonkScreen,
+//           routes: AppRoutes.routes,
+//         );
+//       },
+//     );
+//   }
+// }
