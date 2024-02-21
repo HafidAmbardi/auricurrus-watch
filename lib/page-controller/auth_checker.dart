@@ -2,6 +2,7 @@ import 'package:auricurrus_watch/presentation/straight_honk1_screen/straight_hon
 import 'package:auricurrus_watch/presentation/straight_honk_screen/straight_honk_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
+import 'package:vibration/vibration.dart';
 
 class AuthChecker extends StatefulWidget {
   const AuthChecker({Key? key}) : super(key: key);
@@ -43,9 +44,12 @@ class _AuthCheckerState extends State<AuthChecker> {
         debugPrint(data['dir']);
       });
 
-      // Assuming you want to update the message type when receiving a message
+      if (messages.isNotEmpty && messages.last == 'honk') {
+        Vibration.vibrate(duration: 1000);
+      }
+
       Future.delayed(
-        Duration(seconds: 3),
+        Duration(seconds: 2),
         () {
           setState(
             () {
