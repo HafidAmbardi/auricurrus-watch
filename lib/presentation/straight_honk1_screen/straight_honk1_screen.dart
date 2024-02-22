@@ -1,76 +1,79 @@
 import 'package:flutter/material.dart';
 import 'package:auricurrus_watch/core/app_export.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class StraightHonk1Screen extends StatelessWidget {
+class StraightHonk1Screen extends StatefulWidget {
   const StraightHonk1Screen({Key? key})
       : super(
           key: key,
         );
 
   @override
+  _StraightHonk1Screen createState() => _StraightHonk1Screen();
+}
+
+class _StraightHonk1Screen extends State<StraightHonk1Screen> {
+  bool _isTrue = false;
+
+  void _toggleColor() {
+    setState(() {
+      _isTrue = !_isTrue;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: appTheme.amberA400,
-        body: Container(
-          width: 200.h,
-          padding: EdgeInsets.symmetric(
-            horizontal: 16.h,
-            vertical: 15.v,
-          ),
-          child: SizedBox(
-            height: 210.v,
-            width: 167.h,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: 209.v,
-                    width: 167.h,
-                    decoration: BoxDecoration(
-                      color: appTheme.amberA400,
-                      borderRadius: BorderRadius.circular(
-                        13.h,
-                      ),
-                    ),
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    return Center(
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 100),
+        color: _isTrue ? Colors.black : appTheme.indigoA700,
+        width: screenWidth,
+        height: screenHeight,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AnimatedSwitcher(
+              duration: Duration(milliseconds: 150),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                final slideAnimation = Tween<Offset>(
+                  begin: Offset(0.0, -0.5),
+                  end: Offset(0.0, 0.0),
+                ).animate(CurvedAnimation(
+                  parent: animation,
+                  curve: Curves.easeInOut,
+                ));
+                return SlideTransition(
+                  position: slideAnimation,
+                  child: FadeTransition(
+                    opacity: animation,
+                    child: child,
                   ),
-                ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 17.h),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "8 m",
-                          style: theme.textTheme.headlineMedium,
-                        ),
-                        SizedBox(height: 20.v),
-                        CustomImageView(
-                          imagePath: ImageConstant.imgUser,
-                          height: 73.v,
-                          width: 65.h,
-                        ),
-                        SizedBox(height: 24.v),
-                        Text(
-                          "86th street",
-                          style: theme.textTheme.titleLarge,
-                        ),
-                        SizedBox(height: 6.v),
-                        Text(
-                          "2.5 km • 28 min",
-                          style: theme.textTheme.bodyLarge,
-                        ),
-                      ],
+                );
+              },
+              child: _isTrue
+                  ? SvgPicture.asset(
+                      ImageConstant.imgSettings,
+                      key: ValueKey<int>(1),
+                    )
+                  : SvgPicture.asset(
+                      ImageConstant
+                          .imgLinkedin, // Replace with your other image
+                      key: ValueKey<int>(2),
                     ),
-                  ),
-                ),
-              ],
             ),
-          ),
+            SizedBox(height: 24.v),
+            Text(
+              _isTrue ? "No Sound Detected" : "Sound Detected",
+              style: theme.textTheme.headlineMedium!
+                  .copyWith(fontSize: screenHeight * 0.06),
+            ),
+            ElevatedButton(
+              onPressed: _toggleColor,
+              child: Text('Toggle Color'),
+            ),
+          ],
         ),
       ),
     );

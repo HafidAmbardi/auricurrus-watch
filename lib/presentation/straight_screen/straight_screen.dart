@@ -56,7 +56,7 @@ class StraightScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 25.v),
                         Text(
-                          "88th street",
+                          "88th sstreet",
                           style: theme.textTheme.titleLarge,
                         ),
                         SizedBox(height: 6.v),

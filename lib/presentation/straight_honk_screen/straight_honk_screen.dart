@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:auricurrus_watch/core/app_export.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class StraightHonkScreen extends StatelessWidget {
   const StraightHonkScreen({Key? key})
@@ -10,63 +11,34 @@ class StraightHonkScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        backgroundColor: appTheme.red600,
-        body: Container(
-          width: 200.h,
-          padding: EdgeInsets.symmetric(
-            horizontal: 16.h,
-            vertical: 15.v,
-          ),
-          child: SizedBox(
-            height: 210.v,
-            width: 167.h,
-            child: Stack(
-              alignment: Alignment.center,
+      child: Align(
+        alignment: Alignment.center,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 14.h),
+          child: SingleChildScrollView(
+            // Add this
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    height: 209.v,
-                    width: 167.h,
-                    decoration: BoxDecoration(
-                      color: appTheme.lightGreenA700,
-                      borderRadius: BorderRadius.circular(
-                        13.h,
-                      ),
-                    ),
-                  ),
+                Text(
+                  "Keep straight",
+                  style: CustomTextStyles.titleLarge21,
                 ),
-                Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 14.h),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "Keep straight",
-                          style: CustomTextStyles.titleLarge21,
-                        ),
-                        SizedBox(height: 22.v),
-                        CustomImageView(
-                          imagePath: ImageConstant.imgArrowRight,
-                          height: 75.v,
-                          width: 63.h,
-                        ),
-                        SizedBox(height: 25.v),
-                        Text(
-                          "88th street",
-                          style: theme.textTheme.titleLarge,
-                        ),
-                        SizedBox(height: 5.v),
-                        Text(
-                          "2.3 km • 25 min",
-                          style: theme.textTheme.bodyLarge,
-                        ),
-                      ],
-                    ),
-                  ),
+                SizedBox(height: 22.v),
+                SvgPicture.asset(
+                  ImageConstant.imgArrowRight,
+                  height: 75.v,
+                  width: 63.h,
+                ),
+                SizedBox(height: 25.v),
+                Text(
+                  "88th sstreet",
+                  style: theme.textTheme.titleLarge,
+                ),
+                SizedBox(height: 5.v),
+                Text(
+                  "2.3 km • 25 min",
+                  style: theme.textTheme.bodyLarge,
                 ),
               ],
             ),
