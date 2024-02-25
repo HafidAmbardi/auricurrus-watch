@@ -14,14 +14,17 @@ class AuthChecker extends StatefulWidget {
 class _AuthCheckerState extends State<AuthChecker> {
   TextEditingController messageController = TextEditingController();
   List<String> messages = [];
+  final int PORT = 3001;
+  final String? IP = '10.0.2.2';
 
-  final IO.Socket socket = IO.io('http://10.0.2.2:3001', <String, dynamic>{
-    'transports': ['websocket'],
-    'autoConnect': false,
-  });
+  late final IO.Socket socket;
 
   @override
   void initState() {
+    socket = IO.io('http://$IP:$PORT', <String, dynamic>{
+    'transports': ['websocket'],
+    'autoConnect': false,
+  });
     super.initState();
     connectServer();
     receiveMessage();
