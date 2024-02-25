@@ -1,1 +1,0 @@
- C:\\Users\\Hafid\\Desktop\\Git\\auricurrus-watch\\.dart_tool\\flutter_build\\0002dc41c808e8a136f0d8c0dc8e9a95\\native_assets.yaml: 
