@@ -1,59 +1,65 @@
+## Auricurrus, your navigation assistance through silence
+Auricurrus is an IoT based solution to support the deaf in driving. Auricurrus provides support in 
+visual and haptic cues from noises in surroundings, giving more information to deaf drivers on what is happening around them.
 
-# auricurrus_watch
-### Table of contents
-- [System requirements](#system-requirements)
-- [Figma design guidelines for better UI accuracy](#figma-design-guideline-for-better-accuracy)
-- [Check the UI of the entire app](#app-navigations)
-- [Application structure](#project-structure)
-- [How to format your code?](#how-you-can-do-code-formatting)
-- [How you can improve code readability?](#how-you-can-improve-the-readability-of-code)
-- [Libraries and tools used](#libraries-and-tools-used)
-- [Support](#support)
+## Features
+![welcome](images/welcome.png?raw=true "welcome")
+![frame](images/frames.png?raw=true "frame")
+![init](images/init.png?raw=true "init")
+![signin](images/signin.png?raw=true "singin")
+![connect](images/connect.png?raw=true "connect")
+![siren](images/siren.png?raw=true "siren")
 
-### System requirements
 
-Dart SDK Version 2.18.0 or greater.
-Flutter SDK Version 3.3.0 or greater.
+## Architecture
+![app architecture](images/architecuture.png?raw=true "Architecure")
 
-### Figma design guidelines for better UI accuracy
+## Setting Up 
+1. Ensure that Flutter and Android Studio are installed on your device and that you can run Flutter on your device locally. 
+2. Ensure that you have installed a phone emulator/android phone and a square WearOS emulator on your device. 
+3. Git clone this project 
+4. Open CMD
+5. Navigate to auricurrus-frontend
+6. Navigate to auricurrus-watch in a different terminal
+7. Open your editor in respective directories
+8. Install dependencies on both editors
+9. Run flutter pub get
+10. Run npm i express socket.io
+11. Change the IP variable to your IP address in index.js and audio_recorder.dart if you decide to use an android phone.
+12. For the index.js, it is by default to have no IP for localhost settings. Do change them to your IP address if you choose to test our app using your android phone.
+13. For audio_recorder.dart, it is by default to have the value ‘10.0.2.2’ for emulators. Do change them to your IP address if you choose to test our app using your android phone. 
+14. Turn on your phone emulator/connect your android phone
+15. Turn on your WearOS emulator.
+16. Flutter run respective apps to their devices. 
 
-Read our guidelines to increase the accuracy of design-to-code conversion by optimizing Figma designs.
-https://docs.dhiwise.com/docs/Designguidelines/intro
+## Challenges
+### 1. Getting feedback for developing our application
+Due to our app being targeted for the hearing impaired, the number of people we could contact to provide input for the application was limited.
 
-### Check the UI of the entire app
+### How we tackled that challenge
 
-Check the UI of all the app screens from a single place by setting up the 'initialRoute'  to AppNavigation in the AppRoutes.dart file.
+We contacted local deaf communities and organizations as well as joined many online discussion forums and groups. We made an effort to involve ourselves in the community and find respondents we can work with throughout the development process.
 
-### Application structure
-After successful build, your application structure should look like this:
-                    
-```
-.
-├── android                         - It contains files required to run the application on an Android platform.
-├── assets                          - It contains all images and fonts of your application.
-├── ios                             - It contains files required to run the application on an iOS platform.
-├── lib                             - Most important folder in the application, used to write most of the Dart code..
-    ├── main.dart                   - Starting point of the application
-    ├── core
-    │   ├── app_export.dart         - It contains commonly used file imports
-    │   ├── constants               - It contains static constant class file
-    │   └── utils                   - It contains common files and utilities of the application
-    ├── presentation                - It contains widgets of the screens
-    ├── routes                      - It contains all the routes of the application
-    └── theme                       - It contains app theme and decoration classes
-    └── widgets                     - It contains all custom widget classes
-```
-### How to format your code?
+### 2. Decibel detection integration
+We utilized many packages to develop our app, however for our main feature, decibel monitoring, we had difficulty implementing this feature due to many recording packages writing audio data to a file for future playback instead of a stream, which can hinder performance and overfill memory with long usage time.
 
-- if your code is not formatted then run following command in your terminal to format code
-  ```
-  dart format .
-  ```
+### How we tackled that challenge
+After comparing the documentation of many dart packages, rigorous trial and error, and consulting experienced developers, we were able to find a package that supports our feature and implemented it into one of our core features.
 
-### How you can improve code readability?
+### 3. IoT Communication Means
+Due to time constraints we were required to learn a way for our mobile app to communicate with our watch app despite our lack of experience regarding the issue.
 
-Resolve the errors and warnings that are shown in the application.
+### How we tackled that challenge
+Fortunately, websocket servers are easy to set up and allowed us to communicate between the two interaces. Eventually as users increase we plan to have bluetooth integration as in the current state, different sources of connections would impact the IP address for the devices. Difference in IP addresses would result in failure of communication establishment.
 
-### Support
+## Further Development
+1. Implement sound recognition to classify honks, sirens, and other road sounds.
+2. Implement attention monitoring via watch heart rate monitors & facial recognition.
+3. Bluetooth Integration
 
-If you have any problems or questions, go to our Discord channel, where we will help you as quickly as possible: https://discord.com/invite/rFMnCG5MZ7
+## Contributors
+1. Alana Jocelyn Natania Massie → Business
+2. Vian Sebastian Bromokusumo → Mobile
+3. Hafid Sasayuda Ambardi → Mobile & Watch
+4. Jalalludin Mukthafi → Design
+
